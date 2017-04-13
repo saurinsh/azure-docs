@@ -122,7 +122,7 @@ If you prefer to use an existing Azure AD, you can skip steps 1 and 2.
 4. Enter **User Name**, and then click **Next**. 
 5. Configure user profile; In **Role**, select **Global Admin**; and then click **Next**.  The Global Admin role is needed to create organizational units.
 6. Click **Create** to get a temporary password.
-7. Make a copy of the password, and then click **Complete**. Later in this tutorial, you will use this global admin user to sign on to the admin VM for creating an organization unit and configuring reverse DNS.
+7. Make a copy of the password, and then click **Complete**. Later in this tutorial, you will use this global admin user to create the HDInsight cluster.
 
 Follow the same procedure to create two more users with the **User** role, hiveuser1 and hiveuser2. The following users will be used in [Configure Hive policies for Domain-joined HDInsight clusters](hdinsight-domain-joined-run-hive.md).
 
@@ -260,7 +260,7 @@ In this section, you create a Linux-based Hadoop cluster in HDInsight using eith
        * **Domain settings**: 
          
          * **Domain name**: contoso.onmicrosoft.com
-         * **Domain user name**: Enter a domain user name. This domain must have the following privileges: Join machines to the domain and place them in the organization unit you configured earlier; Create service principals within the organization unit you configured earlier; Create reverse DNS entries. This domain user will become the administrator of this domain-joined HDInsight cluster.
+         * **Domain user name**: Enter a domain user name. This domain must have the following privileges: Join machines to the domain and place them in the organization unit you specify during cluster creation; Create service principals within the organization unit you specify during cluster creation; Create reverse DNS entries. This domain user will become the administrator of this domain-joined HDInsight cluster.
          * **Domain password**: Enter the domain user password.
          * **Organization Unit**: Enter the distinguished name of the OU that you want to use with HDInsight cluster. For example: OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com. If this OU does not exist, HDInsight cluster will create this OU.
          * **LDAPS URL**: ldaps://contoso.onmicrosoft.com:636
