@@ -163,7 +163,7 @@ If you use your own domain, you need to synchronize the password. See [Enable pa
 
 **To configure LDAPS for the Azure AD**
 
-1. Get an SSL certificate that is signed by a signing authority for your domain. Self-signed certificates can't be used. If you can't get an SSL certificate, please reach out to hdipreview@microsoft.com for an exception.
+1. Get an SSL certificate that is signed by a signing authority for your domain. If you want to use a self-signed certificate, please reach out to hdipreview@microsoft.com for an exception.
 2. From the [Azure classic portal](https://manage.windowsazure.com), click **Active Directory** > **contosoaaddirectory**. 
 3. Click **Configure** from the top menu.
 4. Scroll to **domain services**.
@@ -262,7 +262,7 @@ In this section, you create a Linux-based Hadoop cluster in HDInsight using eith
          * **Domain name**: contoso.onmicrosoft.com
          * **Domain user name**: Enter a domain user name. This domain must have the following privileges: Join machines to the domain and place them in the organization unit you specify during cluster creation; Create service principals within the organization unit you specify during cluster creation; Create reverse DNS entries. This domain user will become the administrator of this domain-joined HDInsight cluster.
          * **Domain password**: Enter the domain user password.
-         * **Organization Unit**: Enter the distinguished name of the OU that you want to use with HDInsight cluster. For example: OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com. If this OU does not exist, HDInsight cluster will create this OU.
+         * **Organization Unit**: Enter the distinguished name of the OU that you want to use with HDInsight cluster. For example: OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com. If this OU does not exist, HDInsight cluster will attempt to create this OU. Make sure the OU is already present or the domain account has permissions to create a new one. If you use the domain account which is part of AADDC Administrators, it will have necessary permissions to create the OU.
          * **LDAPS URL**: ldaps://contoso.onmicrosoft.com:636
          * **Access user group**: Specify the security group whose users you want to sync to the cluster. For example, HiveUsers.
            
@@ -299,7 +299,7 @@ Another option for creating Domain-joined HDInsight cluster is to use Azure Reso
    * **Virtual Network Subnet**: /subscriptions/&lt;SubscriptionID>/resourceGroups/&lt;ResourceGroupName>/providers/Microsoft.Network/virtualNetworks/&lt;VNetName>/subnets/Subnet1
    * **Domain Name**: contoso.onmicrosoft.com
    * **Organization Unit DN**: OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com
-   * **Cluster Users Group D Ns**: "\"CN=HiveUsers,OU=AADDC Users,DC=<DomainName>,DC=onmicrosoft,DC=com\""
+   * **Cluster Users Group DNs**: [\"HiveUsers\"]
    * **LDAPUrls**: ["ldaps://contoso.onmicrosoft.com:636"]
    * **DomainAdminUserName**: (Enter the domain admin user name)
    * **DomainAdminPassword**: (enter the domain admin user password)
